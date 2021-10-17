@@ -21,6 +21,5 @@ source $CONFIG_FILE
 docker run -it --name task-service \
     -p ${task_service_port}:5554 \
     --env-file ${CONFIG_FILE} \
-    --entrypoint /bin/bash \
-    lu0alv/task-tracker-app:python-server -s
+    lu0alv/task-tracker-app:python-server
 ```
