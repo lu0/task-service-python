@@ -1,6 +1,17 @@
+# Task Service
+
+A Flask API I made to test CRUD HTTP requests from other applications.
+
+## Usage
+
+Install the dependencies
+```sh
+sudo apt install -y python3 python3-pip
+```
 
 Create a virtual environment
 ```sh
+pip3 install virtualenv
 virtualenv venv
 ```
 
@@ -10,18 +21,14 @@ Activate the environment
 ```
 
 Install the requirements
-
-Manually
-```sh
-pip3 install flask
-pip3 install flask-swagger
-pip3 install flask_restful
-pip3 install flask_swagger_ui
-```
-
 From a file:
 ```sh
-# pip3 freeze > requirements.txt
 pip3 install -r requirements.txt
 ```
+
+Run the service
+```sh
+./TaskService.py
+```
+
 
