@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "disable_existing_loggers": false,
+  "formatters": {
+    "standard": {
+      "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    },
+    "detailed": {
+      "format": "%(asctime)s - %(name)s - %(levelname)s - %(filename)s @%(lineno)d %(funcName)s [%(threadName)s]: %(message)s"
+    }
+  },
+  "handlers": {
+    "cli": {
+      "class": "logging.StreamHandler",
+      "level": "INFO",
+      "formatter": "standard",
+      "stream": "ext://sys.stdout"
+    },
+    "debug_handler": {
+      "class": "logging.FileHandler",
+      "level": "DEBUG",
+      "formatter": "standard",
+      "filename": "logs/task-service_debug.log",
+      "encoding": "utf8"
+    },
+    "error_handler": {
+      "class": "logging.FileHandler",
+      "level": "ERROR",
+      "formatter": "detailed",
+      "filename": "logs/task-service_error.log",
+      "encoding": "utf8"
+    }
+  },
+  "loggers": {
+    "": {
+      "handlers": [
+        "debug_handler",
+        "error_handler"
+      ],
+      "level": "ERROR",
+      "propagate": "false"
+    }
+  },
+  "root": {
+    "level": "INFO",
+    "handlers": [
+      "cli",
+      "debug_handler",
+      "error_handler"
+    ]
+  }
+}

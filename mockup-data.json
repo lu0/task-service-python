@@ -1,0 +1,22 @@
+{
+    "tasks": [
+        {
+            "id": 1,
+            "text": "Push changes to git",
+            "day": "May 4th at 6:00pm",
+            "reminder": true
+        },
+        {
+            "text": "Finish the app",
+            "reminder": true,
+            "day": "Sep 13 at 6:00pm",
+            "id": 2
+        },
+        {
+            "text": "Do some refactoring",
+            "day": "Sep 15 at 1pm",
+            "reminder": false,
+            "id": 3
+        }
+    ]
+}
