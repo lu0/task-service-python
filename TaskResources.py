@@ -24,7 +24,7 @@ class TaskResources:
             data = json.dump(data, file, indent=4)
         return data
 
-    def _return_error(self, error, code): 
+    def _api_error(self, error, code=404): 
         self._log.error(f"APIError: {error}, code: {code}")
         return f"APIError: {error}", code
 
@@ -39,7 +39,7 @@ class GetTaskByAll(Resource, TaskResources):
             task_list = data["tasks"]
             return task_list, 200
         except Exception as exc:
-            self._return_error(exc, 500)
+            return self._api_error(exc, 500)
 
 
 class DeleteTaskById(Resource, TaskResources):
@@ -59,12 +59,12 @@ class DeleteTaskById(Resource, TaskResources):
                     found = True
                     break
             if not found:
-                self._return_error(f"Task with id {taskId} does not exist.", 404)
+                return self._api_error(f"Task with id {taskId} does not exist.")
 
             data = self._dump_to_json_file(data)
             return f"Task with id {taskId} has been deleted.", 200
         except Exception as exc:
-            self._return_error(exc, 500)
+            return self._api_error(exc, 500)
 
 
 class UpdateTask(Resource, TaskResources):
@@ -90,13 +90,13 @@ class UpdateTask(Resource, TaskResources):
                     break
                 index += 1
             if not found:
-                self._return_error(f"Task with id {new_task['id']} does not exist.", 404)
+                return self._api_error(f"Task with id {new_task['id']} does not exist.")
 
             data = self._dump_to_json_file(data)
             tasks_list = GetTaskByAll().get()[0]
             return tasks_list[index], 200
         except Exception as exc:
-            self._return_error(exc, 500)
+            return self._api_error(exc, 500)
 
 
 class AddTask(Resource, TaskResources):
@@ -123,4 +123,4 @@ class AddTask(Resource, TaskResources):
             data = self._dump_to_json_file(data)
             return new_task, 200
         except Exception as exc:
-            self._return_error(exc, 500)
+            return self._api_error(exc, 500)
